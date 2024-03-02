@@ -1,10 +1,44 @@
 import './style.css';
-import testImage from './images/man.jpg';
 
-// 1 image can be imported. Let's see how to import everything
-const docBody = document.querySelector('body');
+// to import all images in the images folder
+function importAll(r) {
+  return r.keys().map(r);
+}
 
-const man = document.createElement('img');
-man.src = testImage;
+const populateImages = () => {
+  const imagesToAppend = [];
 
-docBody.appendChild(man);
+  const srcImages = importAll(
+    require.context('./images/', false, /\.(png|jpe?g|svg)$/)
+  );
+
+  srcImages.forEach((srcImage) => {
+    const image = document.createElement('img');
+    image.src = srcImage;
+    image.classList.add('slider-image');
+    image.style.height = '50px';
+
+    imagesToAppend.push(image);
+  });
+  return imagesToAppend;
+};
+
+const createImageSlider = () => {
+  const imageSlider = document.createElement('div');
+  imageSlider.classList.add('image-slider');
+
+  const imagesToAppend = populateImages();
+  imagesToAppend.forEach((image) => {
+    imageSlider.appendChild(image);
+  });
+
+  return imageSlider;
+};
+
+const prepareImageSlider = () => {
+  const docBody = document.querySelector('body');
+
+  docBody.appendChild(createImageSlider());
+};
+
+prepareImageSlider();
