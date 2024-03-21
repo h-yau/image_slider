@@ -16,7 +16,7 @@ const populateImages = () => {
     const image = document.createElement('img');
     image.src = srcImage;
     image.classList.add('slider-image');
-    image.style.height = '50px';
+    image.style.height = '20rem';
 
     imagesToAppend.push(image);
   });
