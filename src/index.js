@@ -23,6 +23,15 @@ const populateImages = () => {
   return imagesToAppend;
 };
 
+const createArrow = (arrow) => {
+  const arrowButton = document.createElement('button');
+  arrowButton.type = 'button';
+  arrowButton.textContent = arrow;
+  arrowButton.classList.add('arrow', arrow);
+
+  return arrowButton;
+};
+
 const createImageSlider = () => {
   const imageSlider = document.createElement('div');
   imageSlider.classList.add('image-slider');
@@ -32,6 +41,8 @@ const createImageSlider = () => {
     imageSlider.appendChild(image);
   });
 
+  imageSlider.appendChild(createArrow('left'));
+  imageSlider.appendChild(createArrow('right'));
   return imageSlider;
 };
 

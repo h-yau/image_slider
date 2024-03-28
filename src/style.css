@@ -2,6 +2,26 @@ div {
 }
 
 .image-slider {
+  position: relative;
+
   display: inline-block;
-  overflow-x: hidden;
+  overflow: hidden;
+
+  height: 40rem;
+  width: 60rem;
+
+  border: 10px black solid;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
 }
