@@ -2,6 +2,10 @@ div {
 }
 
 .image-slider {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
   position: relative;
 
   display: inline-block;
@@ -13,15 +17,56 @@ div {
   border: 10px black solid;
 }
 
-.arrow {
+.slider-image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+
+  position: absolute;
+}
+
+.current-image {
+  z-index: 1;
+}
+
+.arrow-div {
+  z-index: 2;
+
+  height: 50px;
+  width: 50px;
+
   position: absolute;
   top: 50%;
+  transform: translateY(-50%);
+
+  background-color: rgba(0, 0, 0, 0.75);
+
+  transition: all 0.15s ease-in-out;
+}
+
+.arrow-div:hover {
+  background-color: rgba(0, 0, 0, 0.85);
+}
+
+.arrow {
+  border: 0;
+  background: transparent;
+  height: 100%;
+  width: 100%;
+
+  cursor: pointer;
 }
 
 .left {
   left: 0;
+  border-radius: 0 50% 50% 0;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ctitle%3Echevron-left%3C/title%3E%3Cpath d='M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z' fill='%23ffffff' /%3E%3C/svg%3E");
 }
 
 .right {
   right: 0;
+  border-radius: 50% 0 0 50%;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ctitle%3Echevron-right%3C/title%3E%3Cpath d='M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z' fill='%23ffffff' /%3E%3C/svg%3E");
 }
