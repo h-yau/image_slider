@@ -14,7 +14,8 @@ div {
   height: 40rem;
   width: 60rem;
 
-  border: 10px black solid;
+  border: 2px rgba(0, 0, 0, 0.9) solid;
+  border-radius: 7px;
 }
 
 .slider-image {
