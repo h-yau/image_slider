@@ -33,7 +33,16 @@ const createArrow = (arrow) => {
 
   const arrowButton = document.createElement('button');
   arrowButton.type = 'button';
-  arrowButton.classList.add('arrow');
+  arrowButton.addEventListener('click', () => {
+    const currentImage = document.querySelector('.current-slide');
+    currentImage.classList.remove('current-slide');
+
+    const temp = currentImage.nextElementSibling;
+    console.log(temp);
+    temp.classList.add('current-slide');
+  });
+
+  arrowButton.classList.add('arrow', `arrow-${arrow}`);
 
   arrowDiv.appendChild(arrowButton);
 
@@ -49,7 +58,8 @@ const createImageSlider = () => {
     imageSlider.appendChild(image);
   });
 
-  imageSlider.querySelector('.slider-image').classList.add('current-image');
+  // set default current image
+  imageSlider.querySelector('.slide').classList.add('current-slide');
 
   imageSlider.appendChild(createArrow('left'));
   imageSlider.appendChild(createArrow('right'));
