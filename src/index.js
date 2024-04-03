@@ -27,20 +27,30 @@ const populateImages = () => {
   return imagesToAppend;
 };
 
+const retrieveCurrentSlideIndex = () => {
+  const slideArray = document.querySelectorAll('.slide');
+  for (let i = 0; i < slideArray.length; i++) {
+    if (slideArray[i].classList.contains('current-slide')) return i;
+  }
+};
+
+const removeCurrentSlide = (index) => {
+  const slideArray = document.querySelectorAll('.slide');
+  slideArray[index].classList.remove('current-slide');
+};
+
+const applyCurrentSlide = (index) => {
+  const slideArray = document.querySelectorAll('.slide');
+  slideArray[index].classList.add('current-slide');
+};
+
 const createArrow = (arrow) => {
   const arrowDiv = document.createElement('div');
   arrowDiv.classList.add('arrow-div', arrow);
 
   const arrowButton = document.createElement('button');
   arrowButton.type = 'button';
-  arrowButton.addEventListener('click', () => {
-    const currentImage = document.querySelector('.current-slide');
-    currentImage.classList.remove('current-slide');
-
-    const temp = currentImage.nextElementSibling;
-    console.log(temp);
-    temp.classList.add('current-slide');
-  });
+  arrowButton.addEventListener('click', applyCurrentSlide);
 
   arrowButton.classList.add('arrow', `arrow-${arrow}`);
 
@@ -58,7 +68,7 @@ const createImageSlider = () => {
     imageSlider.appendChild(image);
   });
 
-  // set default current image
+  // set default current image on the first image
   imageSlider.querySelector('.slide').classList.add('current-slide');
 
   imageSlider.appendChild(createArrow('left'));
