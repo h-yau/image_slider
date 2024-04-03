@@ -29,7 +29,7 @@ const populateImages = () => {
 
 const retrieveCurrentSlideIndex = () => {
   const slideArray = document.querySelectorAll('.slide');
-  for (let i = 0; i < slideArray.length; i++) {
+  for (let i = 0; i < slideArray.length; i += 1) {
     if (slideArray[i].classList.contains('current-slide')) return i;
   }
 };
@@ -44,13 +44,28 @@ const applyCurrentSlide = (index) => {
   slideArray[index].classList.add('current-slide');
 };
 
+const changeSlide = (arrowDirection) => {
+  const slideArray = document.querySelectorAll('.slide');
+  let slideIndex = retrieveCurrentSlideIndex();
+  removeCurrentSlide(slideIndex);
+
+  slideIndex =
+    arrowDirection === 'right'
+      ? (slideIndex + 1) % slideArray.length
+      : (slideIndex - 1 + slideArray.length) % slideArray.length;
+
+  applyCurrentSlide(slideIndex);
+};
+
 const createArrow = (arrow) => {
   const arrowDiv = document.createElement('div');
   arrowDiv.classList.add('arrow-div', arrow);
 
   const arrowButton = document.createElement('button');
   arrowButton.type = 'button';
-  arrowButton.addEventListener('click', applyCurrentSlide);
+  arrowButton.addEventListener('click', () => {
+    changeSlide(arrow);
+  });
 
   arrowButton.classList.add('arrow', `arrow-${arrow}`);
 
