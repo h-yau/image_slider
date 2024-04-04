@@ -1,3 +1,10 @@
+.carousel {
+  position: relative;
+
+  height: 40rem;
+  width: 60rem;
+}
+
 .image-slider {
   list-style: none;
   padding: 0;
@@ -6,13 +13,11 @@
   position: relative;
 
   display: inline-block;
-  overflow: hidden;
 
-  height: 40rem;
-  width: 60rem;
+  height: 100%;
+  width: 100%;
 
-  border: 2px rgba(0, 0, 0, 0.9) solid;
-  border-radius: 7px;
+  transition: transform 500ms ease-in-out;
 }
 
 .slider-image {
@@ -21,14 +26,18 @@
   object-fit: cover;
 }
 
-.current-slide {
-  z-index: 1;
-}
-
 .slide {
   position: absolute;
   height: 100%;
   width: 100%;
+
+  border: 2px rgba(0, 0, 0, 0) solid;
+  border-radius: 7px;
+}
+
+.current-slide {
+  border: 2px rgba(0, 0, 0, 0.9) solid;
+  border-radius: 7px;
 }
 
 .arrow-div {

@@ -42,6 +42,10 @@ const removeCurrentSlide = (index) => {
 const applyCurrentSlide = (index) => {
   const slideArray = document.querySelectorAll('.slide');
   slideArray[index].classList.add('current-slide');
+  const imageWidth = slideArray[index].getBoundingClientRect().width;
+
+  const imageSlider = document.querySelector('.image-slider');
+  imageSlider.style.transform = `translateX(-${imageWidth * index}px)`;
 };
 
 const changeSlide = (arrowDirection) => {
@@ -86,15 +90,30 @@ const createImageSlider = () => {
   // set default current image on the first image
   imageSlider.querySelector('.slide').classList.add('current-slide');
 
-  imageSlider.appendChild(createArrow('left'));
-  imageSlider.appendChild(createArrow('right'));
   return imageSlider;
 };
 
-const prepareImageSlider = () => {
-  const docBody = document.querySelector('body');
-
-  docBody.appendChild(createImageSlider());
+const setSlides = () => {
+  const slideArray = document.querySelectorAll('.slide');
+  const slideWidth = slideArray[0].getBoundingClientRect().width;
+  for (let i = 0; i < slideArray.length; i += 1) {
+    slideArray[i].style.left = `${slideWidth * i}px`;
+  }
 };
 
-prepareImageSlider();
+const instantiateCarousel = () => {
+  const docBody = document.querySelector('body');
+
+  const carousel = document.createElement('div');
+  carousel.classList.add('carousel');
+
+  carousel.appendChild(createImageSlider());
+  carousel.appendChild(createArrow('right'));
+  carousel.appendChild(createArrow('left'));
+
+  docBody.appendChild(carousel);
+
+  setSlides();
+};
+
+instantiateCarousel();
