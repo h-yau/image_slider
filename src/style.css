@@ -3,6 +3,11 @@
 
   height: 40rem;
   width: 60rem;
+
+  border: 2px rgba(0, 0, 0, 0.9) solid;
+  border-radius: 7px;
+
+  overflow: hidden;
 }
 
 .image-slider {
@@ -30,14 +35,6 @@
   position: absolute;
   height: 100%;
   width: 100%;
-
-  border: 2px rgba(0, 0, 0, 0) solid;
-  border-radius: 7px;
-}
-
-.current-slide {
-  border: 2px rgba(0, 0, 0, 0.9) solid;
-  border-radius: 7px;
 }
 
 .arrow-div {
